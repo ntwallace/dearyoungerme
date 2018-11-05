@@ -1,3 +1,32 @@
-/**************/
-/* Custom CSS */
-/**************/
+/*
+Body
+--------------------------------------------------------------------------------------------
+*/
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+th, td {
+	padding: 6px;
+	text-align: left;
+}
+
+th {
+    cursor: pointer;
+    font-weight: bold;
+	background-color: #ddd;
+	border: 1px solid #ddd;
+}
+
+tr {
+	text-align: left;
+	padding: 6px;
+	border: 1px solid #ddd;
+}
+
+tr:hover {
+	background-color: #f1f1f1;
+}
