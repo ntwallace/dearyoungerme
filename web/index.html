@@ -6,38 +6,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dear Younger Me</title>
 
-    <!-- Custom Font - Change 'Muli' to the font you want -->
-    <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/infinite.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
+  </head>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <body>
+  	<!-- <div id='table'></div> -->
 
-    <!-- Custom CSS inside CSS folder -->
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Container div -->
+    <div id='container'>
+      <img src='img/title.svg' id='title' />
+      <div id='mailbox-container'>
+        <img src='img/mailbox.svg' id='mailbox' />
+        <div id='paper-feed'></div>  
+      </div>
 
-    <!-- JQuery script -->
+      <div id='search-container' class='footer'>
+        <div id='search-text'>SEARCH</div>
+        <div id='search'>
+          <select id='search-type'>
+            <option value='message'>Message</option>
+            <option value='phone_number'>Phone #</option>
+          </select>
+          <input type='text' id='search-value' onChange='sendSearchVar()' />
+        </div>
+      </div>
+
+      
+        <a data-fancybox data-src="#about-content" href="javascript:;">
+          <div id='about-container' class='footer'>
+            ABOUT
+          </div>
+        </a>
+    </div>
+
+    <div id='about-content'>
+      <div id='about-title'>DEAR YOUNGER ME</div>
+      <div id='about-subtitle'>If you were given a window into the past, what would you say to yourself?</div>
+      <div id='about-text'>Dear Younger Me is an interactive window installation designed and built in Fall 2018 by <a href='' target='_blank'>Sam Chasan</a>, <a href='http://www.nickwallace.us' target='_blank'>Nick Wallace</a>, and <a href='http://www.tongwu.io' target='_blank'>Tong Wu</a>. The piece was conceived as...</div>
+    </div>
+
+    <!-- JQuery & infinite Scroll -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.js"></script>
+
+    <!-- Get search variables -->
+    <script type="text/javascript">
+      function sendSearchVar(){
+        
+
+        $.post("php/infinite.php",
+          {
+              searchType: $("#search-type").val(),
+              searchVal: $("#search-value").val(),
+          },
+          function(data,status){
+              $('#paper-feed').html(data);
+          });
+
+      }
+    </script>
 
     <!-- Refresh DB rows every 5 sec -->
     <script type="text/javascript">
-		$(document).ready(function(){
-		      refreshTable();
-		    });
+      $(document).ready(function(){
+            $("#search-container").click(function(){
+                $("#search").show();
+            });
 
-		function refreshTable(){
-	        $('#table').load('php/connect.php', function(){
-	           setTimeout(refreshTable, 5000);
-	        });
-	    }
-	</script>
+            $("#search-text").click(function(){
+                console.log('clicked')
+                $("#search").hide();
+            });
 
-  </head>
-  <body>
+            refreshFeed();
+          });
 
-  	<div id='table'></div>
+      function refreshFeed(){
+            $('#paper-feed').load('php/infinite.php', function(data){
+
+              //setTimeout(refreshFeed, 5000);
+            });
+
+      }
+    </script>
+
 
   </body>
-
-    <!-- CUSTOM JS -->
-    <script src="js/main.js"></script>
 </html>

@@ -1,0 +1,360 @@
+/*
+Body
+--------------------------------------------------------------------------------------------
+*/
+
+body {
+	background-color: #153b4c;
+    background-image: url('../img/background.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-position: 50% 50%;
+    overflow: scroll;
+}
+
+a {
+	color: black;
+}
+
+#container{
+	max-width: 1000px;
+	margin: auto;
+}
+
+#mailbox-container {
+	margin: auto;
+}
+
+#title{
+	max-width: 85%;
+	display: block;
+	margin: 3% auto 0;
+}
+
+#mailbox{
+	max-width: 35%;
+	display: block;
+	margin: 8% auto 0;
+}	
+
+.footer{
+	font-family: courier;
+	font-weight: bold;
+	font-size: 30px;
+
+	color:black;
+	border-radius: 5px;
+}
+
+#search-container {
+	background-color: #FFF; 
+	z-index: 10; 
+	position: fixed; 
+	left: 10%; 
+	bottom: 5%;
+	padding: 1% 2% 1% 2%;
+}
+
+#search {
+	display: none;
+
+}
+
+#search-type{
+	border: none;
+	font-size: 16px;
+}
+
+#search-value{
+	font-size: 16px;
+    border-radius: 5px;
+    border-width: 1px;
+}
+
+#about-container {
+	background-color: #FFF; 
+	z-index: 10; 
+	position: fixed; 
+	right: 10%; 
+	bottom: 5%;
+	padding: 1% 2% 1% 2%;
+}
+
+#about-content {
+	display: none;
+	font-family: courier;
+	max-width: 85%;
+}
+
+
+#about-title{
+  	font-size: 56px;
+  	font-weight: bold;
+}
+
+#about-subtitle{
+  	font-size: 24px;
+  	font-style: italic;
+}
+
+#about-text{
+	margin-top: 3%;
+}
+
+#paper-container{
+    height: 225vh
+}
+
+#paper-feed {
+	width: 30.5%;
+	background: white;
+	margin: auto;
+    margin-top: -65%;
+    transform: translateX(4%);
+    position: relative;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#paper-feed::before {
+	content:''; 
+	position:absolute; 
+	width:0px; 
+	top:0; 
+	right:10px; 
+	bottom:0; 
+	border-right:.25px 
+	dashed #E8E8E8;
+
+	width: 1em;
+    height: 100;
+    background: grey;
+    background: -moz-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: -webkit-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: radial-gradient(rgba(0, 0, 0, 0) 24%, #E8E8E8 24%) 0 0;
+    background-size: 1em 1em;
+	bottom:0; 
+	border-right:.25px 
+	dashed #E8E8E8;
+	transform: translateX(65%);
+}
+
+#paper-feed::after {
+	content:''; 
+	position:absolute; 
+	width:0px; 
+	top:0; 
+	left:10px; 
+	bottom:0; 
+	border-left:.25px 
+	dashed #E8E8E8;
+
+	width: 1em;
+    height: 100;
+    background: grey;
+    background: -moz-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: -webkit-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: radial-gradient(rgba(0, 0, 0, 0) 24%, #E8E8E8 24%) 0 0;
+    background-size: 1em 1em;
+	bottom:0; 
+	border-left:.25px 
+	dashed #E8E8E8;
+	transform: translateX(-65%);
+}
+
+.data-row {
+	font-family: courier;
+	border: .25px dashed #E8E8E8;
+
+	padding:18% 5% 18% 5%;
+}
+
+.message {
+	margin-left: 5%;
+	font-size: 28px;
+}
+
+.subheader {
+	font-size: 12px;
+	display: table;
+	width: 100%;
+	margin-top: 3%;
+}
+
+.number {
+	padding-left: 5%;
+	display: table-cell;
+}
+
+.time {
+	text-align: right;
+	padding-right: 5%;
+}
+
+
+
+/*
+Media Queries
+--------------------------------------------------------------------------------------------
+*/
+
+/* iPhone X and up */
+@media screen and (max-width: 900px) {
+  .footer{
+	font-size: 20px;
+  }
+
+  .message {
+	font-size: 18px;
+  }
+
+  .subheader {
+	font-size: 8px;
+  }
+
+  #search-container {
+	left: 5%; 
+	bottom: 5%;
+  }
+
+  #search-type{
+	font-size: 12px;
+  }
+
+  #search-value{
+	font-size: 12px;
+  }
+
+  #about-container {
+	right: 5%; 
+	bottom: 5%;
+  }
+
+  #paper-feed::before {
+	content:''; 
+	position:absolute; 
+	width:0px; 
+	top:0; 
+	right:10px; 
+	bottom:0; 
+	border-right:.25px 
+	dashed #F8F8FF;
+
+	width: .25em;
+    height: 100;
+    background: grey;
+    background: -moz-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: -webkit-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: radial-gradient(rgba(0, 0, 0, 0) 24%, #F5F5F5 24%) 0 0;
+    background-size: .5em .5em;
+	bottom:0; 
+	border-right:.25px 
+	dashed #F5F5F5;
+	transform: translateX(100%);
+  }
+
+#paper-feed::after {
+	content:''; 
+	position:absolute; 
+	width:0px; 
+	top:0; 
+	left:10px; 
+	bottom:0; 
+	border-left:.25px 
+	dashed #F5F5F5;
+
+	width: .25em;
+    height: 100;
+    background: grey;
+    background: -moz-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: -webkit-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: radial-gradient(rgba(0, 0, 0, 0) 24%, #F5F5F5 24%) 0 0;
+    background-size: .5em .5em;
+	bottom:0; 
+	border-left:.25px 
+	dashed #F5F5F5;
+	transform: translateX(-100%);
+  }
+}
+
+/* iPhone 6-8 */
+@media screen and (max-width: 700px) {
+  .footer{
+	font-size: 18px;
+	margin
+  }
+
+  .message {
+	font-size: 16px;
+  }
+
+  .subheader {
+	font-size: 8px;
+  }
+
+  #search-container {
+	left: 5%; 
+	bottom: 5%;
+  }
+
+  #search-type{
+	font-size: 12px;
+  }
+
+  #search-value{
+	font-size: 12px;
+  }
+
+  #about-container {
+	right: 5%; 
+	bottom: 5%;
+  }
+
+  #paper-feed::before {
+	content:''; 
+	position:absolute; 
+	width:0px; 
+	top:0; 
+	right:10px; 
+	bottom:0; 
+	border-right:.25px 
+	dashed #F8F8FF;
+
+	width: .5em;
+    height: 100;
+    background: grey;
+    background: -moz-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: -webkit-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: radial-gradient(rgba(0, 0, 0, 0) 24%, #F5F5F5 24%) 0 0;
+    background-size: .5em .5em;
+	bottom:0; 
+	border-right:.25px 
+	dashed #F5F5F5;
+	transform: translateX(100%);
+  }
+
+#paper-feed::after {
+	content:''; 
+	position:absolute; 
+	width:0px; 
+	top:0; 
+	left:10px; 
+	bottom:0; 
+	border-left:.25px 
+	dashed #F5F5F5;
+
+	width: .5em;
+    height: 100;
+    background: grey;
+    background: -moz-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: -webkit-radial-gradient(rgba(0, 0, 0, 0) 24%, #ffffff 24%) 0 0;
+    background: radial-gradient(rgba(0, 0, 0, 0) 24%, #F5F5F5 24%) 0 0;
+    background-size: .5em .5em;
+	bottom:0; 
+	border-left:.25px 
+	dashed #F5F5F5;
+	transform: translateX(-100%);
+  }
+}
