@@ -1,8 +1,5 @@
 import pymysql.cursors
-import datetime
-import time
-import sys
-import math
+import datetime, time, sys, math
 import cairo
 import cups
 import textwrap
@@ -20,6 +17,7 @@ from PIL import Image
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+
 
 
 @app.route("/sms", methods=['GET', 'POST'])
@@ -43,8 +41,8 @@ def getSMS():
 def sendSMS():
 	output = ''
 
-	account_sid = 'AC3dda261d805f93f32a04cd2522cbdb69'
-	auth_token = 'b42a31ddf37b729bd31dde6142833184'
+	account_sid = ''
+	auth_token = ''
 	client = Client(account_sid, auth_token)
 
 	message = client.messages.create(
