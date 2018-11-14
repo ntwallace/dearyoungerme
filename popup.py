@@ -1,15 +1,21 @@
 import pymysql.cursors
 import datetime
+import time
+import sys
 import math
 import cairo
 import cups
 import textwrap
 import serial
 
+from random import randint
+from apscheduler.schedulers.background import BackgroundScheduler
 from flask import Flask, request, session
+from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from PIL import Image
+
 
 
 app = Flask(__name__)
@@ -34,11 +40,27 @@ def getSMS():
 	print("Text received from: " + phoneNumber + ". Content: " + textMessage)
 	return textMessage
 
+def sendSMS():
+	output = ''
+
+	account_sid = 'AC3dda261d805f93f32a04cd2522cbdb69'
+	auth_token = 'b42a31ddf37b729bd31dde6142833184'
+	client = Client(account_sid, auth_token)
+
+	message = client.messages.create(
+						body=output,
+	                    from_='+13476442729',
+	                    to='+13476442729'
+	                )
+
+	resp = MessagingResponse()
+	resp.message(message)
+
 def updateDB(number, message, score, zip, time):
 
 	# Connect to mySQL database
 	connection = pymysql.connect(host='',
-	                             user='popup',
+	                             user='',
 	                             password='',
 	                             db='popup',
 	                             charset='utf8mb4',
@@ -93,7 +115,7 @@ def drawText(message, number, time):
 	cr.set_font_size(fontSize)
 
 	# setup intial placement
-	x = 20
+	x = 30
 	y = 128
 	cr.move_to(x, y)
 
@@ -113,7 +135,7 @@ def drawText(message, number, time):
 	outputPath = '/Users/itpstudent/dym/output.png'
 	surface.write_to_png(outputPath)
 
-	#printFile(outputPath, numLines)
+	printFile(outputPath, numLines)
 	changeLights(numLines)
 
 def printFile(imgFile, numLines):
@@ -125,12 +147,42 @@ def printFile(imgFile, numLines):
 				imgFile,
 				" ",
 				{"orientation-requested":"6", # rotates 180*
-				 "media":"Custom.612x600",}) # length x height in pixels (72 per in)
-	changeLights(numLines)
+				 "media":"Custom.612x792",}) # length x height in pixels (72 per in)
 
 def changeLights(length):
-	ser = serial.Serial('/dev/cu.usbmodemFA121', 9600)
-	ser.write(length)		# check this
+	response = 'hello'
+	try:
+		ser = serial.Serial('/dev/cu.usbmodemFD121', 115200, timeout=.1)
+		time.sleep(1)
+	except:
+		print("Could not open serial connection to arduino! Check USB connection & ensure port = usbmodemFD121")
+	else:
+		ser.write(str(length).encode())		# encode int as ascii bytes
+		while response != b'Got length\r\n':
+			ser.write(str(length).encode())
+			response = ser.readline()
+
+def textDYM():
+	i = randint(0,4)
+	textVals = ['Tell her how you feel', "Don't let them put you down", 'Being young is the greatest gift in the world', 'Have fun, be silly', "If it's not a hell yes, it's a no"]
+	output = textVals[i]
+
+	account_sid = 'ACf6e4fd8d80cbb17e932ec5d48ac500a5'
+	auth_token = '4ab6127d6af226045021605dfcff2165'
+	client = Client(account_sid, auth_token)
+
+	message = client.messages.create(
+						body=output,
+	                    from_='+13478511138',
+	                    to='+13476442729'
+	                )
+
+	resp = MessagingResponse()
+	resp.message(message)
+
+scheduler = BackgroundScheduler()
+job = scheduler.add_job(textDYM, 'interval', minutes=45, replace_existing=True)
+scheduler.start()
 
 if __name__ == "__main__":
     app.run(debug=True)
