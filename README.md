@@ -3,8 +3,8 @@ Dear Younger Me is an interactive window installation designed and built by Nick
 
 ## Code
 1. Primary code for the installation can be found in popup.py
-1. LED control code can be found in /arduino
-1. Various tests for individual installation components can be found in /tests
+1. LED control code can be found in [arduino](/arduino)
+1. Various tests for individual installation components can be found in [tests](/tests)
 
 ## Website
-All web code is found in /web
+All web code is found in [web](/web)
