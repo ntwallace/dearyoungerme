@@ -17,6 +17,10 @@ a {
 	color: black;
 }
 
+p {
+	padding-top: 2%;
+}
+
 #container{
 	max-width: 1000px;
 	margin: auto;
@@ -47,6 +51,10 @@ a {
 	border-radius: 5px;
 }
 
+.hidden{
+	display: none;
+}
+
 #search-container {
 	background-color: #FFF; 
 	z-index: 10; 
@@ -73,6 +81,7 @@ a {
 }
 
 #about-container {
+	max-width: 62%;
 	background-color: #FFF; 
 	z-index: 10; 
 	position: fixed; 
@@ -81,10 +90,14 @@ a {
 	padding: 1% 2% 1% 2%;
 }
 
+#about-img {
+	max-width: 50%;
+}
+
 #about-content {
 	display: none;
 	font-family: courier;
-	max-width: 85%;
+	max-width: 1000px;
 }
 
 
@@ -100,6 +113,11 @@ a {
 
 #about-text{
 	margin-top: 3%;
+}
+
+#social-buttons {
+	margin-top: 4%;
+	max-width: 40%;
 }
 
 #paper-container{
@@ -219,17 +237,35 @@ Media Queries
 	bottom: 5%;
   }
 
+  #about-content{
+  	max-width: 100%;
+  }
+
+  #about-container {
+	right: 5%; 
+	bottom: 5%;
+  }
+
+  #about-title{
+  	padding-top: 5%;
+  	font-size: 24px;
+  }
+
+  #about-subtitle{
+  	font-size: 16px;
+  }
+
+  #about-text{
+  	font-size: 12px;
+  }
+
+
   #search-type{
 	font-size: 12px;
   }
 
   #search-value{
 	font-size: 12px;
-  }
-
-  #about-container {
-	right: 5%; 
-	bottom: 5%;
   }
 
   #paper-feed::before {
@@ -287,7 +323,7 @@ Media Queries
   }
 
   .message {
-	font-size: 16px;
+	font-size: 14px;
   }
 
   .subheader {
@@ -307,9 +343,26 @@ Media Queries
 	font-size: 12px;
   }
 
+  #about-content{
+  	max-width: 100%;
+  }
+
   #about-container {
 	right: 5%; 
 	bottom: 5%;
+  }
+
+  #about-title{
+  	padding-top: 5%;
+  	font-size: 24px;
+  }
+
+  #about-subtitle{
+  	font-size: 14px;
+  }
+
+  #about-text{
+  	font-size: 12px;
   }
 
   #paper-feed::before {
@@ -317,7 +370,7 @@ Media Queries
 	position:absolute; 
 	width:0px; 
 	top:0; 
-	right:10px; 
+	right:7px; 
 	bottom:0; 
 	border-right:.25px 
 	dashed #F8F8FF;
@@ -340,7 +393,7 @@ Media Queries
 	position:absolute; 
 	width:0px; 
 	top:0; 
-	left:10px; 
+	left:7px; 
 	bottom:0; 
 	border-left:.25px 
 	dashed #F5F5F5;

@@ -1,9 +1,9 @@
 <?php
 
 	function connection(){
-		$server="";
-		$user="";
-		$pass="";
+		$server="localhost";
+		$user="popup";
+		$pass="windows";
 		$db="popup";
 	   	
 		$connection = mysql_connect($server, $user, $pass);

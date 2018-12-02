@@ -8,6 +8,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/infinite.css">
+    <link rel="stylesheet" href="css/rrssb.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.2/dist/jquery.fancybox.min.css" />
   </head>
 
@@ -42,9 +43,20 @@
     </div>
 
     <div id='about-content'>
+      <div style="padding:56.25% 0 0 0;position:relative;">
+      	<iframe src="https://player.vimeo.com/video/303390491" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+      </div>
       <div id='about-title'>DEAR YOUNGER ME</div>
       <div id='about-subtitle'>If you were given a window into the past, what would you say to yourself?</div>
-      <div id='about-text'>Dear Younger Me is an interactive window installation designed and built in Fall 2018 by <a href='' target='_blank'>Sam Chasan</a>, <a href='http://www.nickwallace.us' target='_blank'>Nick Wallace</a>, and <a href='http://www.tongwu.io' target='_blank'>Tong Wu</a>. The piece was conceived as...</div>
+      <div id='about-text'>
+        <p>Dear Younger Me is an interactive art installation designed and built by ITP students 
+          <a href='http://www.samuelchasan.com/' target='_blank'>Sam Chasan</a>, 
+          <a href='http://www.nickwallace.us' target='_blank'>Nick Wallace</a>, and 
+          <a href='http://www.tongwumedia.com' target='_blank'>Tong Wu</a>. The piece explores ...
+        </p>
+        <p>Dear Younger Me invites people to share their joy, their love, their advice, their regrets, and their heartbreak with their younger selves via text. Each message is printed out onto a continuous feed of paper, slowly filling the window and allowing passersby to read messages others have sent to themselves.
+        </p>
+      </div>
     </div>
 
     <!-- JQuery & infinite Scroll -->
@@ -73,12 +85,11 @@
     <script type="text/javascript">
       $(document).ready(function(){
             $("#search-container").click(function(){
-                $("#search").show();
+                $('#search').toggle();
             });
 
-            $("#search-text").click(function(){
-                console.log('clicked')
-                $("#search").hide();
+            $("#search").click(function(e){
+                e.stopPropagation();
             });
 
             refreshFeed();
@@ -92,6 +103,11 @@
 
       }
     </script>
+
+    <!-- Show hidden DIVs on scroll -->
+    <script src='js/infinite.js'></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery.1.10.2.min.js"><\/script>')</script>
+    <script src="https://player.vimeo.com/api/player.js"></script>
 
 
   </body>
